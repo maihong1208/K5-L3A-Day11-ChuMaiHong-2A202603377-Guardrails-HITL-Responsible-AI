@@ -88,7 +88,7 @@ async def part4_attacks():
     print("=" * 60)
 
     from agents.agent import create_red_agent_default, test_agent
-    from attacks.attacks import run_attacks, save_attack_results
+    from attacks.attacks import run_attacks, save_attack_results, write_run_attack_json
 
     red_default, red_default_runner = create_red_agent_default()
     await test_agent(red_default, red_default_runner)
@@ -111,6 +111,8 @@ async def part4_attacks():
         print(f"\n[SKIP] Red Advance không khả dụng: {e}")
         print("    (cần nemoguardrails — chỉ ảnh hưởng bonus B2)")
         guards_results = []
+        # Vẫn ghi file per-target theo quy ước CHECKPOINTS.md
+        write_run_attack_json([], target_name="red_advance")
 
     save_attack_results(
         unsafe_results=unsafe_results,

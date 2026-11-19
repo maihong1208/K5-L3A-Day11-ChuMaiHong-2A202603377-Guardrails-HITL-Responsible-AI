@@ -2,7 +2,7 @@
 
 > File này **tự sinh** bởi `scripts/grade.py`. **Không** viết / sửa tay.
 
-- Generated (UTC): `2026-11-19T10:29:49.000957+00:00`
+- Generated (UTC): `2026-11-19T10:35:10.912986+00:00`
 - Framework: `guardrails-pipeline`
 - Technical failure: **False**
 
@@ -40,7 +40,7 @@
 
 ```text
 ..........                                                               [100%]
-10 passed in 0.91s
+10 passed in 0.92s
 ```
 
 ## Notes
