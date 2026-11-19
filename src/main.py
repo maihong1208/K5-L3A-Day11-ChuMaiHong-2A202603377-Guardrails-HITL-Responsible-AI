@@ -88,7 +88,6 @@ async def part4_attacks():
     print("=" * 60)
 
     from agents.agent import create_red_agent_default, test_agent
-    from agents.guards_agent import create_red_agent_advance
     from attacks.attacks import run_attacks, save_attack_results
 
     red_default, red_default_runner = create_red_agent_default()
@@ -99,11 +98,19 @@ async def part4_attacks():
         red_default, red_default_runner, target_name="red_default"
     )
 
-    print("\n--- Attacks on Red Advance (bonus B2 tối đa +10 nếu LEAKED; chọn 1) ---")
-    red_advance, red_advance_runner = create_red_agent_advance()
-    guards_results = await run_attacks(
-        red_advance, red_advance_runner, target_name="red_advance"
-    )
+    guards_results = []
+    try:
+        print("\n--- Attacks on Red Advance (bonus B2 tối đa +10 nếu LEAKED; chọn 1) ---")
+        from agents.guards_agent import create_red_agent_advance
+
+        red_advance, red_advance_runner = create_red_agent_advance()
+        guards_results = await run_attacks(
+            red_advance, red_advance_runner, target_name="red_advance"
+        )
+    except (ImportError, RuntimeError) as e:
+        print(f"\n[SKIP] Red Advance không khả dụng: {e}")
+        print("    (cần nemoguardrails — chỉ ảnh hưởng bonus B2)")
+        guards_results = []
 
     save_attack_results(
         unsafe_results=unsafe_results,
